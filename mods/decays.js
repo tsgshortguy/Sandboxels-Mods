@@ -32,6 +32,9 @@ behavior: [
 "M1|XX|M1",
 "M1|M1|M1",
 ],
+  reactions: {
+"proton": {elem1:"neutron", elem2: "beta_plus_particle"}
+},
 category: "particles",
 state: "gas"
 },
