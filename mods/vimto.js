@@ -1,5 +1,8 @@
 //vimto.js mod for sandboxels by nota
 //adds vimto from arabian stores
+const vimto_version = "3.1.0";
+dependOn("aChefsDream.js");
+dependOn("aChefsDream2.js");
 behaviors.VLIQUID = [
 	"XX|XX|XX",
 	"XX|XX|M2 AND BO",
@@ -17,10 +20,37 @@ elements.vimto = {
 	tempLow: 3,
 	stateLow: "vimto_ice",
 	conduct: 0.02,
-	stain: -0.5,
 	extinguish: true,
 	flippableX: true,
 	desc: "The vimto you get when you mix Vimto Cordial with Water.",
+};
+elements.sugarfree_vimto = {
+	color: "#2b1910",
+	behavior: behaviors.VLIQUID,
+	category: "food",
+	state: "liquid",
+	density: 1060,
+	viscosity: 0,
+	tempHigh: 103,
+	stateHigh: ["steam", "steam", "sodium_benzoate"],
+	tempLow: 3,
+	stateLow: "sugarfree_vimto_ice",
+	conduct: 0.02,
+	extinguish: true,
+	flippableX: true,
+	desc: "The vimto you get when you mix Sugarfree Vimto Cordial with Water.",
+};
+elements.sugarfree_vimto_ice = {
+	color: "#e8a5b7",
+	behavior: behaviors.WALL,
+	category: "food",
+	state: "solid",
+	density: 1060,
+	temp: -15,
+	tempHigh: 3,
+	stateHigh: "sugarfree_vimto",
+	flippableX: true,
+	desc: "A frozen version of sugarfree vimto, perfect for popping into your vimto drink",
 };
 elements.vimto_ice = {
 	color: "#e8a5b7",
@@ -28,7 +58,6 @@ elements.vimto_ice = {
 	category: "food",
 	state: "solid",
 	density: 1060,
-	viscosity: 0,
 	temp: -15,
 	tempHigh: 3,
 	stateHigh: "vimto",
@@ -39,6 +68,9 @@ elements.vimto_cordial = {
 	color: "#2e020a",
 	behavior: behaviors.VLIQUID,
 	category: "food",
+	reactions: {
+		water: { elem1: null, elem2: "vimto" },
+	},
 	state: "liquid",
 	density: 1420,
 	viscosity: 5,
@@ -47,7 +79,6 @@ elements.vimto_cordial = {
 	tempLow: 3,
 	stateLow: "vimto_cordial_ice",
 	conduct: 0.02,
-	stain: -0.5,
 	extinguish: true,
 	flippableX: true,
 	desc: "The vimto you can buy from arabian stores as a cordial. Turns into normal Vimto when mixed with Water.",
@@ -58,7 +89,6 @@ elements.vimto_cordial_ice = {
 	category: "food",
 	state: "solid",
 	density: 1430,
-	viscosity: 5,
 	temp: -15,
 	tempHigh: 3,
 	stateHigh: "vimto_cordial",
@@ -71,6 +101,7 @@ elements.sugarfree_vimto_cordial = {
 	category: "food",
 	reactions: {
 		sugar: { elem1: null, elem2: "vimto_cordial" },
+		water: { elem1: null, elem2: "sugarfree_vimto" },
 	},
 	state: "liquid",
 	density: 1400,
@@ -80,7 +111,6 @@ elements.sugarfree_vimto_cordial = {
 	tempLow: 3,
 	stateLow: "sugarfree_vimto_cordial_ice",
 	conduct: 0.02,
-	stain: -0.5,
 	extinguish: true,
 	desc: "a sugar-free version of Vimto Cordial.",
 };
@@ -136,7 +166,6 @@ elements.smashed_blackcurrant = {
 	stateHigh: ["steam", "steam", "sugar", "smoke"],
 	tempHigh: 98,
 	conduct: 0.02,
-	stain: -0.5,
 	extinguish: true,
 };
 elements.smashed_raspberry = {
@@ -155,7 +184,6 @@ elements.smashed_raspberry = {
 	stateHigh: ["steam", "steam", "sugar", "smoke"],
 	tempHigh: 98,
 	conduct: 0.02,
-	stain: -0.5,
 	extinguish: true,
 };
 elements.blackcurrant_raspberry_juice = {
@@ -172,7 +200,7 @@ elements.blackcurrant_raspberry_juice = {
 	density: 2208,
 	flippableX: true,
 	conduct: 0.02,
-	stain: -0.5,
+	stain: 0.5,
 	extinguish: true,
 };
 elements.blackcurrant_raspberry_grape_juice = {
@@ -186,7 +214,7 @@ elements.blackcurrant_raspberry_grape_juice = {
 	density: 2208,
 	flippableX: true,
 	conduct: 0.02,
-	stain: -0.5,
+	stain: 0.5,
 	extinguish: true,
 };
 elements.sodium_benzoate = {
@@ -221,3 +249,4 @@ elements.molten_sodium_benzoate = {
 	density: 1497,
 };
 console.log("vimto.js successfully loaded");
+console.log("vimto.js is running version " + version);
